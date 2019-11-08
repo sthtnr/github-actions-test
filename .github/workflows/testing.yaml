@@ -16,5 +16,6 @@ jobs:
           args: -c "
             echo hoge &&
             ls &&
-            echo fuga | grep fuga
+            echo fuga | grep fuga &&
+						echo $IMAGE
             "
