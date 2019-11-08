@@ -17,5 +17,5 @@ jobs:
             echo hoge &&
             ls &&
             echo fuga | grep fuga &&
-						echo $IMAGE
+            echo $IMAGE
             "
