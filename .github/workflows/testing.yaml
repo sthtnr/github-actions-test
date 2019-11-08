@@ -14,5 +14,7 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: -c "
-						echo hogefuga | grep fuga
+            echo hoge &&
+            ls &&
+            echo fuga | grep fuga
             "
