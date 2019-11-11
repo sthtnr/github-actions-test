@@ -8,6 +8,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: second step
       - uses: docker://devth/helm:latest
         env:
           IMAGE: gcr.io/test-tool-257606/build-app
@@ -18,4 +25,5 @@ jobs:
             ls &&
             echo fuga | grep fuga &&
             echo $IMAGE
+            echo ${{ steps.extract_branch.outputs.branch }}
             "
