@@ -14,7 +14,7 @@ jobs:
         id: extract_branch
 
       - name: second step
-      - uses: docker://devth/helm:latest
+        uses: docker://devth/helm:latest
         env:
           IMAGE: gcr.io/test-tool-257606/build-app
         with:
