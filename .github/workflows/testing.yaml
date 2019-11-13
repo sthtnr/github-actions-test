@@ -4,25 +4,27 @@ on: [push]
 jobs:
   build:
     name: Build
+    env:
+      POPOPO: aaaaa
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
 
       - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo $POPOPO
         id: extract_branch
 
       - name: second step
         uses: docker://devth/helm:latest
         env:
-          IMAGE: gcr.io/test-tool-257606/build-app
+          POPOPO: ${{ steps.extract_branch.outputs.branch }}-$GITHUB_SHA
         with:
           entrypoint: /bin/bash
           args: -c "
-            echo hoge &&
-            ls &&
-            echo fuga | grep fuga &&
-            echo $IMAGE
+            echo hogefuga
+            echo $POPOPO
             echo ${{ steps.extract_branch.outputs.branch }}
             "
