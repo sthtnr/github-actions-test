@@ -6,6 +6,7 @@ jobs:
     name: Build
     env:
       POPOPO: aaaaa
+      TOTOTO: bbbbb
     runs-on: ubuntu-latest
 
     steps:
@@ -20,12 +21,15 @@ jobs:
       - name: second step
         uses: docker://devth/helm:latest
         env:
-          POPOPO: ${{ steps.extract_branch.outputs.branch }}-$GITHUB_SHA
+          POPOPO: ${{ steps.extract_branch.outputs.branch }}-${{ github.sha }}
+          TOTOTO: github.sha
         with:
           entrypoint: /bin/bash
           args: -c "
             echo hogefuga &&
             echo $POPOPO &&
+            echo $TOTOTO &&
             echo $GITHUB_SHA &&
+            echo github.sha &&
             echo ${{ steps.extract_branch.outputs.branch }}
             "
