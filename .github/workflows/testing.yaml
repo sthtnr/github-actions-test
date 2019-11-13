@@ -16,6 +16,7 @@ jobs:
         run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo $POPOPO
+          docker version
         id: extract_branch
 
       - name: second step
@@ -31,5 +32,6 @@ jobs:
             echo $TOTOTO &&
             echo $GITHUB_SHA &&
             echo github.sha &&
+            docker version &&
             echo ${{ steps.extract_branch.outputs.branch }}
             "
