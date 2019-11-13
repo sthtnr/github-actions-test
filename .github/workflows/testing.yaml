@@ -24,7 +24,8 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: -c "
-            echo hogefuga
-            echo $POPOPO
+            echo hogefuga &&
+            echo $POPOPO &&
+            echo $GITHUB_SHA &&
             echo ${{ steps.extract_branch.outputs.branch }}
             "
