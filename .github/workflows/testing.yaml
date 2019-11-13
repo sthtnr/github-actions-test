@@ -16,7 +16,6 @@ jobs:
         run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo $POPOPO
-          # docker version
           gcloud version
         id: extract_branch
 
@@ -33,7 +32,6 @@ jobs:
             echo $TOTOTO &&
             echo $GITHUB_SHA &&
             echo github.sha &&
-            # docker version &&
             gcloud version &&
             echo ${{ steps.extract_branch.outputs.branch }}
             "
