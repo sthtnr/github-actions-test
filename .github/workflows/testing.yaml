@@ -19,6 +19,17 @@ jobs:
           gcloud version
         id: extract_branch
 
+      - name: first step
+        uses: docker://devth/helm:latest
+        env:
+          BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          BRANCH_EX: $BRANCH-hogehogehoge
+        with:
+          entrypoint: /bin/bash
+          args: -c "
+            echo $BRANCH &&
+            echo $BRANCH_EX
+            "
       # - name: second step
       #   uses: docker://devth/helm:latest
       #   env:
@@ -35,11 +46,7 @@ jobs:
       #       gcloud version &&
       #       echo ${{ steps.extract_branch.outputs.branch }}
       #       "
-
-      - name: dind
-        uses: docker://docker:latest
-        with:
-          args: -c "
-            docker version &&
-            gcloud version
-            "
+      # - name: dind
+      #   uses: docker://docker:latest
+      #   with:
+      #     args: "docker version"
