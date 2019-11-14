@@ -19,27 +19,26 @@ jobs:
           gcloud version
         id: extract_branch
 
-      - name: second step
-        uses: docker://devth/helm:latest
-        env:
-          POPOPO: ${{ steps.extract_branch.outputs.branch }}-${{ github.sha }}
-          TOTOTO: github.sha
-        with:
-          entrypoint: /bin/bash
-          args: -c "
-            echo hogefuga &&
-            echo $POPOPO &&
-            echo $TOTOTO &&
-            echo $GITHUB_SHA &&
-            echo github.sha &&
-            gcloud version &&
-            echo ${{ steps.extract_branch.outputs.branch }}
-            "
+      # - name: second step
+      #   uses: docker://devth/helm:latest
+      #   env:
+      #     POPOPO: ${{ steps.extract_branch.outputs.branch }}-${{ github.sha }}
+      #     TOTOTO: github.sha
+      #   with:
+      #     entrypoint: /bin/bash
+      #     args: -c "
+      #       echo hogefuga &&
+      #       echo $POPOPO &&
+      #       echo $TOTOTO &&
+      #       echo $GITHUB_SHA &&
+      #       echo github.sha &&
+      #       gcloud version &&
+      #       echo ${{ steps.extract_branch.outputs.branch }}
+      #       "
 
       - name: dind
         uses: docker://docker:latest
         with:
-          entrypoint: /bin/bash
           args: -c "
             docker version &&
             gcloud version
