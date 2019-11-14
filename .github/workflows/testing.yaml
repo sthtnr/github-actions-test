@@ -43,4 +43,4 @@ jobs:
           args: -c "
             docker version &&
             gcloud version
-          "
+            "
