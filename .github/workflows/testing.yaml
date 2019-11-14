@@ -35,3 +35,12 @@ jobs:
             gcloud version &&
             echo ${{ steps.extract_branch.outputs.branch }}
             "
+
+      - name: dind
+        uses: docker://docker:latest
+        with:
+          entrypoint: /bin/bash
+          args: -c "
+            docker version &&
+            gcloud version
+          "
